@@ -1,6 +1,8 @@
 (ns advent-of-code-2016.day01
   (:require [clojure.set :as set]))
 
+;; -- shared fn's
+
 (defn determine-new-facing [instruction-direction currently-facing]
   (case currently-facing
     :north (case instruction-direction \L :west \R :east)
@@ -22,13 +24,7 @@
     :east (case instruction-direction \L (+ old-y travel-amount) \R (- old-y travel-amount))
     :west (case instruction-direction \L (- old-y travel-amount) \R (+ old-y travel-amount))))
 
-(defn determine-visited-grid-positions [facing current-x current-y instruction-direction travel-amount]
-  (let [distance-bumps (map inc (range travel-amount))
-        new-points (mapv (fn [distance-to-bump]
-                          [(determine-new-x current-x facing instruction-direction distance-to-bump)
-                           (determine-new-y current-y facing instruction-direction distance-to-bump)])
-                        distance-bumps)]
-    new-points))
+;; -- part 1
 
 (defn run
   [input]
@@ -45,6 +41,16 @@
        :y 0
        :facing :north}
       input)))
+
+;; -- part 2
+
+(defn determine-visited-grid-positions [facing current-x current-y instruction-direction travel-amount]
+  (let [distance-bumps (map inc (range travel-amount))
+        new-points (mapv (fn [distance-to-bump]
+                          [(determine-new-x current-x facing instruction-direction distance-to-bump)
+                           (determine-new-y current-y facing instruction-direction distance-to-bump)])
+                        distance-bumps)]
+    new-points))
 
 (defn run-bonus
   [input]
