@@ -5,14 +5,16 @@
             [advent-of-code-2016.day04 :as day04]
             [advent-of-code-2016.day05 :as day05]
             [advent-of-code-2016.day06 :as day06]
-            [advent-of-code-2016.day07 :as day07])
+            [advent-of-code-2016.day07 :as day07]
+            [advent-of-code-2016.day08 :as day08]
+            [advent-of-code-2016.day09 :as day09])
   (:gen-class))
 
 (defn -main
   [& args]
   (try
-    (let [input (slurp "inputs/07.txt")]
-      (day07/run input))
+    (let [input (slurp "inputs/08.txt")]
+      (day08/run input))
     (catch Throwable e (println "sad times") (println e))))
 
 ;; (-main)
